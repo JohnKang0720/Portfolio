@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { motion } from 'framer-motion'
 import type { BlogPost } from '../data/content'
+import BlogDiagram from './BlogDiagrams'
 
 // Inline **bold**, *italic*, and `code` within a text run.
 function renderInline(text: string, keyBase: string) {
@@ -157,11 +158,15 @@ export default function BlogModal({
       >
         <button
           onClick={onClose}
-          className="sticky top-0 float-right ml-4 grid h-10 w-10 place-items-center rounded-full border border-ink-700 text-ink-300 transition-colors hover:border-ink-100 hover:text-ink-100"
+          className="absolute right-4 top-4 z-10 grid h-10 w-10 place-items-center rounded-full border border-ink-700 bg-ink-900/80 text-ink-300 backdrop-blur transition-colors hover:border-ink-100 hover:text-ink-100"
           aria-label="Close article"
         >
           ✕
         </button>
+
+        <div className="diag-live mb-8 h-40 w-full rounded-xl border border-ink-800 bg-ink-950/50 px-6 py-5">
+          <BlogDiagram kind={post.diagram} />
+        </div>
 
         <span className="section-label">{post.kicker}</span>
         <h1 className="mt-4 text-3xl font-semibold tracking-tight text-ink-100 sm:text-4xl">

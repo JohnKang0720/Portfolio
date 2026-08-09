@@ -11,6 +11,7 @@ export const POSTS: BlogPost[] = [
     kicker: 'LLM-as-a-Judge',
     date: 'Aug 2026',
     readingTime: '7 min',
+    diagram: 'loop',
     tags: ['Agentic AI', 'Evaluation', 'LLMOps'],
     excerpt:
       'How I built an evaluation loop that scores an agent against a rubric, then rewrites its own prompts to close the gaps — turning eval from a report card into a feedback controller.',
@@ -55,6 +56,7 @@ The bigger lesson: evaluation isn't the thing you do *after* building the agent.
     kicker: 'MCP + Retrieval',
     date: 'Jul 2026',
     readingTime: '8 min',
+    diagram: 'hub',
     tags: ['MCP', 'Text-to-SQL', 'RAG', 'dbt'],
     excerpt:
       'Our data bot started as a text-to-SQL tool with table schemas pasted into the prompt. Here is how it became an agent that reads dbt and the codebase live — via MCP and embedding search.',
@@ -98,6 +100,7 @@ We replaced a brittle artifact (a prompt full of copied schemas) with a *process
     kicker: 'Applied LLM Pipeline',
     date: 'Jun 2026',
     readingTime: '9 min',
+    diagram: 'pipeline',
     tags: ['LLM Pipelines', 'Analytics', 'dbt', 'Hex'],
     excerpt:
       'Thousands of raw support conversations, zero structure. Here is how a 10-dimension LLM taxonomy — with drift monitoring and a registry-as-data core — became a live product-health dashboard.',
@@ -154,6 +157,7 @@ The model is the easy part. The durable value came from the surrounding system: 
     kicker: 'Human-in-the-Loop AI',
     date: 'May 2026',
     readingTime: '8 min',
+    diagram: 'gate',
     tags: ['Agentic AI', 'Human-in-the-Loop', 'dbt'],
     excerpt:
       'U.S. labor law is enormous, fragmented, and always changing. Here is how we built a system where AI agents research the law, a human approves, and verified rules ship to production — automatically.',
@@ -195,6 +199,7 @@ Designing this taught me that the hard problems in applied AI are rarely the mod
     kicker: 'ML From First Principles',
     date: 'Apr 2026',
     readingTime: '10 min',
+    diagram: 'pca',
     tags: ['Linear Algebra', 'Dimensionality Reduction', 'Theory'],
     excerpt:
       'Principal Component Analysis is usually taught as a black box that "reduces dimensions." Here it is from the ground up: variance, covariance, eigenvectors, and why the math has to work this way.',
@@ -259,6 +264,7 @@ Once you see PCA as *the eigendecomposition of covariance*, a lot of ML clicks i
     kicker: 'Research · Tang Lab UBC',
     date: 'Nov 2025',
     readingTime: '9 min',
+    diagram: 'vae',
     tags: ['Generative Models', 'Neuroscience', 'VAE', 'Research'],
     excerpt:
       'Standard VAEs learn latent spaces you can not trust to be unique. PIVAE fixes that with identifiability — and it turns out to be exactly what you need to model how neurons encode the world.',

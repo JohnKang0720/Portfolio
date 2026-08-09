@@ -66,4 +66,43 @@
   .link-underline:hover {
     background-size: 100% 1px;
   }
+
+  /* Blog diagram animations — marching-ants "flow" + axis draw-in.
+     Static by default; run on card hover or always inside the modal. */
+  .dgflow {
+    stroke-dasharray: 4 4;
+  }
+  .group:hover .dgflow,
+  .diag-live .dgflow {
+    animation: dgflow 0.7s linear infinite;
+  }
+  @keyframes dgflow {
+    to {
+      stroke-dashoffset: -8;
+    }
+  }
+
+  .dgdraw {
+    stroke-dasharray: 220;
+    stroke-dashoffset: 0;
+  }
+  .group:hover .dgdraw,
+  .diag-live .dgdraw {
+    animation: dgdraw 0.9s ease;
+  }
+  @keyframes dgdraw {
+    from {
+      stroke-dashoffset: 220;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dgflow,
+    .dgdraw {
+      animation: none !important;
+    }
+  }
 }

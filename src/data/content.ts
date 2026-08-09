@@ -286,6 +286,8 @@ export const RESEARCH = {
     'Built and evaluated Poisson Identifiable VAEs (PIVAE) for latent modeling of neural spike data, stress-testing robustness across sessions and subjects.',
 }
 
+export type DiagramKind = 'loop' | 'hub' | 'pipeline' | 'gate' | 'pca' | 'vae'
+
 export type BlogPost = {
   id: string
   title: string
@@ -294,6 +296,7 @@ export type BlogPost = {
   readingTime: string
   tags: string[]
   excerpt: string
+  diagram: DiagramKind
   // Body is rendered as lightweight markdown-ish blocks (see BlogModal).
   body: string
 }
