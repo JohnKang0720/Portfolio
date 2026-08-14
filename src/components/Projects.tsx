@@ -85,7 +85,7 @@ function ProjectCard({ project, i }: { project: Project; i: number }) {
                 target="_blank"
                 rel="noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="link-underline font-mono text-xs text-ink-100"
+                className="link-underline font-mono text-xs text-accent"
               >
                 ▶ Live Demo
               </a>

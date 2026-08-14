@@ -17,14 +17,14 @@ export default function Hero() {
         className="pointer-events-none absolute inset-0 opacity-[0.18]"
         style={{
           backgroundImage:
-            'linear-gradient(to right, #333333 1px, transparent 1px), linear-gradient(to bottom, #333333 1px, transparent 1px)',
+            'linear-gradient(to right, #2f3540 1px, transparent 1px), linear-gradient(to bottom, #2f3540 1px, transparent 1px)',
           backgroundSize: '64px 64px',
           maskImage: 'radial-gradient(ellipse 70% 60% at 50% 40%, black 30%, transparent 75%)',
         }}
       />
       <div
         className="pointer-events-none absolute left-1/2 top-[38%] h-[60vh] w-[60vh] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-40 blur-[120px]"
-        style={{ background: 'radial-gradient(circle, #3a3a3a 0%, transparent 70%)' }}
+        style={{ background: 'radial-gradient(circle, #2b3550 0%, transparent 70%)' }}
       />
 
       {/* Status line */}
@@ -35,8 +35,8 @@ export default function Hero() {
         className="section-label z-10 mb-4 flex items-center gap-3"
       >
         <span className="relative flex h-2 w-2">
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-ink-100 opacity-60" />
-          <span className="relative inline-flex h-2 w-2 rounded-full bg-ink-100" />
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
+          <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
         </span>
         {PROFILE.role} · {PROFILE.location}
       </motion.p>

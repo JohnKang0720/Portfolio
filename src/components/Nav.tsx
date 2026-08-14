@@ -81,7 +81,7 @@ export default function Nav() {
               {active === l.id && (
                 <motion.span
                   layoutId="nav-active"
-                  className="absolute -bottom-1.5 left-0 h-px w-full bg-ink-100"
+                  className="absolute -bottom-1.5 left-0 h-px w-full bg-accent"
                 />
               )}
             </button>
