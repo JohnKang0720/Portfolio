@@ -14,7 +14,7 @@ export const PROFILE = {
   location: 'Vancouver, BC',
   email: 'gkang03@student.ubc.ca',
   github: 'https://github.com/JohnKang0720',
-  linkedin: 'https://www.linkedin.com/in/gyojin-kang',
+  linkedin: 'https://www.linkedin.com/in/gyo-jin-kang-877634211/',
   resume: import.meta.env.BASE_URL + 'Gyo-Jin-Kang-Resume.pdf',
 }
 
@@ -93,6 +93,7 @@ export type Project = {
   highlights: string[]
   stack: string[]
   why: string // market argument
+  demo?: string // live demo URL
   link?: { label: string; href: string }
 }
 
@@ -116,109 +117,118 @@ export const PROJECTS: Project[] = [
     why: 'Deep learning on messy real-world signals is exactly what medical-AI, wearables, and neurotech teams hire for. The leakage-free evaluation shows the scientific discipline production ML actually requires.',
   },
   {
-    id: 'unet',
-    index: '02',
-    title: 'Breast Cancer U-Net Segmentation',
-    subtitle: 'Encoder–decoder tumor segmentation on ultrasound imagery',
-    domain: 'Computer Vision · Medical',
-    year: '2024',
-    summary:
-      'A U-Net that segments malignant tumor regions in breast ultrasound images. Built the full encoder–decoder with transposed-convolution up-sampling, skip connections, batch normalization, and dropout, evaluated with the Dice coefficient.',
-    highlights: [
-      'Full U-Net encoder–decoder implemented from scratch in TensorFlow',
-      'Transposed-convolution up-sampling with skip connections for pixel-precise masks',
-      'Dice-coefficient evaluation with batch-norm + dropout regularization',
-    ],
-    stack: ['TensorFlow', 'Keras', 'OpenCV', 'NumPy'],
-    why: 'Medical imaging is one of the most durable, high-impact CV markets. Segmentation architecture fluency (U-Net, skip connections, Dice) transfers directly to healthcare, manufacturing QA, and geospatial roles.',
-    link: {
-      label: 'View on GitHub',
-      href: 'https://github.com/JohnKang0720/breast-cancer-unet',
-    },
-  },
-  {
-    id: 'hate-speech',
-    index: '03',
-    title: 'Hate-Speech Detection',
-    subtitle: 'LSTM + Attention for content moderation',
-    domain: 'NLP · Deep Learning',
-    year: '2024',
-    summary:
-      'A sequence model that flags offensive language, pairing a bidirectional LSTM with an attention mechanism so the network learns which tokens drive a classification. SMOTE handles severe class imbalance; evaluation spans precision, recall, F1, and confusion analysis.',
-    highlights: [
-      'LSTM + attention architecture that surfaces the tokens behind each decision',
-      'SMOTE oversampling to correct heavy minority-class imbalance',
-      'Full evaluation: accuracy, precision, recall, F1, confusion matrix',
-    ],
-    stack: ['TensorFlow', 'Keras', 'NLTK', 'imbalanced-learn'],
-    why: 'Attention is the conceptual core of every modern transformer — building it by hand proves you understand what LLMs are doing underneath. Trust & Safety and content-moderation ML remain in constant demand.',
-    link: {
-      label: 'View on GitHub',
-      href: 'https://github.com/JohnKang0720/hate-speech-detection',
-    },
-  },
-  {
-    id: 'course-rec',
-    index: '04',
-    title: 'Course Recommendation Engine',
-    subtitle: 'Web-scraped data + clustering-based recommendations',
-    domain: 'Unsupervised ML · Data Eng',
-    year: '2024',
-    summary:
-      'An end-to-end recommender that scrapes university course data, engineers numerical features, and groups courses with three clustering strategies — K-Means, agglomerative hierarchical, and spectral — to surface similar courses to students.',
-    highlights: [
-      'Custom web-scraping pipeline to build the course dataset from scratch',
-      'Three clustering algorithms compared: K-Means, hierarchical, spectral',
-      'Feature engineering + similarity-based recommendation within clusters',
-    ],
-    stack: ['Python', 'Scikit-Learn', 'BeautifulSoup', 'Pandas'],
-    why: 'It pairs two in-demand skills in one project: the data engineering to acquire messy real data, and the unsupervised ML to structure it. Clustering + recommendation is the backbone of personalization systems everywhere.',
-    link: {
-      label: 'View on GitHub',
-      href: 'https://github.com/JohnKang0720/course_recommender',
-    },
-  },
-  {
     id: 'hotel-svd',
-    index: '05',
-    title: 'Hotel Recommender (SVD)',
-    subtitle: 'Matrix factorization vs. item-based collaborative filtering',
-    domain: 'Recommender Systems',
-    year: '2024',
+    index: '02',
+    title: 'Hotel Recommender — SVD from scratch',
+    subtitle: 'Power-iteration SVD + FunkSVD, benchmarked on ranking',
+    domain: 'Recommender Systems · Linear Algebra',
+    year: '2025',
     summary:
-      'A recommendation study that decomposes the user–hotel interaction matrix with Singular Value Decomposition to learn latent preference factors, benchmarked against an item-based cosine-similarity baseline.',
+      'Matrix factorization built from first principles: a hand-written power-iteration SVD (matches NumPy to ~1e-14) plus FunkSVD trained only on the ratings that exist. That fixes the missing-as-zero bug that broke the original and beats item-based CF and mean-imputed SVD on RMSE, Recall@K and NDCG.',
     highlights: [
-      'SVD matrix factorization to learn latent user & item factors',
-      'Item-based collaborative filtering baseline for comparison',
-      'Analysis of the trade-offs between memory-based and model-based recsys',
+      'From-scratch power-iteration SVD + deflation, validated against NumPy',
+      'FunkSVD (observed-only SGD) wins: RMSE 0.71 vs 1.09 for plain SVD',
+      'Interactive latent-space map + matrix-completion heatmaps',
     ],
-    stack: ['Python', 'NumPy', 'Scikit-Learn', 'SciPy'],
-    why: 'Latent-factor models are the same mathematical family as the embeddings powering modern retrieval and LLM search. Recommender/personalization skills are a perennial revenue-driver for consumer tech.',
-    link: {
-      label: 'View on GitHub',
-      href: 'https://github.com/JohnKang0720/Hotel-Recommendation',
-    },
+    stack: ['NumPy', 'scikit-learn', 'Plotly', 'Streamlit'],
+    why: 'Latent-factor models are the same math behind the embeddings powering modern retrieval and LLM search — this shows I understand recsys, not just call .fit().',
+    demo: 'https://johnkang0720.github.io/Hotel-Recommendation/',
+    link: { label: 'GitHub', href: 'https://github.com/JohnKang0720/Hotel-Recommendation' },
   },
   {
-    id: 'swish',
-    index: '06',
-    title: 'Swish or Brick',
-    subtitle: 'NBA shot-quality classification, end to end',
-    domain: 'Supervised ML · Analytics',
-    year: '2024',
+    id: 'ghostwriter',
+    index: '03',
+    title: 'Ghostwriter — Human vs. AI text',
+    subtitle: 'Detecting LLM-generated writing, in the browser',
+    domain: 'NLP · LLM Safety',
+    year: '2025',
     summary:
-      'A full ML lifecycle on NBA shot data: exploration, feature engineering over shot distance, shot-clock, and player context, then a classifier that separates good shots from bad — with standard classification metrics and visual diagnostics.',
+      'Three detectors decide if text was written by a human or an LLM: a stylometric logistic model, gradient boosting over cross-fit n-gram perplexity, and a BiLSTM with attention. The attention model hits 0.98 AUC, and the whole thing runs client-side with token-level "AI-ness" highlighting.',
     highlights: [
-      'Complete pipeline: EDA → feature engineering → model → evaluation',
-      'Domain features from shot distance, shot clock, and player context',
-      'Interpretable shot-quality classification with visual diagnostics',
+      'BiLSTM + attention detector at 0.98 AUC (the ported core of my NLP work)',
+      'Cross-fit perplexity so held-out human text isn\'t mis-flagged',
+      'Runs entirely in-browser via ONNX / Transformers.js',
     ],
-    stack: ['Python', 'Scikit-Learn', 'Pandas', 'Matplotlib', 'Seaborn'],
-    why: 'Sports analytics is a crowded-but-loved way to prove the full supervised-learning lifecycle. The muscle — framing a business question, engineering features, and validating honestly — is what every DS role tests.',
-    link: {
-      label: 'View on GitHub',
-      href: 'https://github.com/JohnKang0720/swish-or-brick',
-    },
+    stack: ['PyTorch', 'Transformers', 'ONNX', 'Transformers.js'],
+    why: 'AI-text detection and content authenticity is one of the hottest text problems, and attention is the conceptual core of every transformer.',
+    demo: 'https://johnkang0720.github.io/hate-speech-detection/',
+    link: { label: 'GitHub', href: 'https://github.com/JohnKang0720/hate-speech-detection' },
+  },
+  {
+    id: 'captioning',
+    index: '04',
+    title: 'Assistive Image Captioning',
+    subtitle: 'Show, Attend & Tell — captions with per-word attention + speech',
+    domain: 'Multimodal · Vision-Language',
+    year: '2025',
+    summary:
+      'A ViT/CNN encoder feeds an attention LSTM decoder I trained on Flickr8k (BLEU-4 0.18). For every word it generates, it shows the image region it looked at — and reads the caption aloud, aimed at describing scenes for people who can\'t see them.',
+    highlights: [
+      'Attention decoder trained from scratch (Show, Attend & Tell), BLEU-4 0.18',
+      'Per-word attention heatmaps overlaid on the image',
+      'Text-to-speech accessibility demo, running in-browser',
+    ],
+    stack: ['PyTorch', 'ViT / ResNet', 'ONNX', 'Web Speech API'],
+    why: 'Multimodal vision-language is the current frontier, and the attention maps prove the model genuinely learned where to look.',
+    demo: 'https://johnkang0720.github.io/Caption-Generator/',
+    link: { label: 'GitHub', href: 'https://github.com/JohnKang0720/Caption-Generator' },
+  },
+  {
+    id: 'unet',
+    index: '05',
+    title: 'Breast Cancer U-Net Segmentation',
+    subtitle: 'In-browser tumor segmentation on ultrasound',
+    domain: 'Computer Vision · Medical',
+    year: '2025',
+    summary:
+      'A U-Net trained with a Dice + BCE loss and paired augmentation to segment tumors in breast-ultrasound scans (Dice 0.62 on the hard malignant subset). Exported to ONNX and running client-side — upload a scan and get a mask overlay in real time.',
+    highlights: [
+      'Dice + BCE loss and augmentation; honest eval including a failure case',
+      'ONNX export running fully in-browser via ONNX Runtime Web',
+      'Responsible-AI model card — research demo, not a medical device',
+    ],
+    stack: ['PyTorch', 'ONNX', 'onnxruntime-web', 'NumPy'],
+    why: 'Medical imaging is a durable, high-impact CV market, and segmentation fluency (U-Net, Dice, skip connections) transfers straight to healthcare and QA.',
+    demo: 'https://johnkang0720.github.io/breast-cancer-unet/',
+    link: { label: 'GitHub', href: 'https://github.com/JohnKang0720/breast-cancer-unet' },
+  },
+  {
+    id: 'course-search',
+    index: '06',
+    title: 'Course Semantic Search',
+    subtitle: 'Embeddings + vector search over 1,200 UBC courses',
+    domain: 'NLP · Retrieval',
+    year: '2025',
+    summary:
+      'Search the UBC Science catalog by meaning, not keywords. Course descriptions are embedded with MiniLM; your query is embedded in the browser (Transformers.js) and matched by nearest-neighbor. K-Means clusters color an interactive topic map where your results light up.',
+    highlights: [
+      'MiniLM embeddings + cosine kNN over 1,203 scraped courses',
+      'Query embedded in-browser — zero backend, instant search',
+      'Interactive UMAP topic map with a K-Means clustering baseline',
+    ],
+    stack: ['sentence-transformers', 'FAISS', 'Transformers.js', 'scikit-learn'],
+    why: 'Embeddings and vector search are the core of today\'s RAG and retrieval systems, here on real scraped data with a zero-backend deploy.',
+    demo: 'https://johnkang0720.github.io/course_recommender/',
+    link: { label: 'GitHub', href: 'https://github.com/JohnKang0720/course_recommender' },
+  },
+  {
+    id: 'ecg',
+    index: '07',
+    title: 'ECG Anomaly Monitor',
+    subtitle: 'Real-time heartbeat screening with a conv-autoencoder',
+    domain: 'Time-Series · Anomaly Detection',
+    year: '2025',
+    summary:
+      'A 1-D convolutional autoencoder trained only on normal heartbeats flags arrhythmias by reconstruction error (AUC 0.976, beating an Isolation Forest baseline). A live in-browser monitor streams an ECG and lights up abnormal beats as they scroll past.',
+    highlights: [
+      'One-class conv-autoencoder, AUC 0.976 vs 0.948 for Isolation Forest',
+      'Reconstruction-error scoring with a calibrated threshold',
+      'Live streaming monitor running the model in-browser (ONNX)',
+    ],
+    stack: ['PyTorch', 'ONNX', 'onnxruntime-web', 'scikit-learn'],
+    why: 'Streaming plus anomaly detection transfers directly to monitoring, fraud, and observability — always-in-demand systems work.',
+    demo: 'https://johnkang0720.github.io/ecg_anomaly_detection/',
+    link: { label: 'GitHub', href: 'https://github.com/JohnKang0720/ecg_anomaly_detection' },
   },
 ]
 

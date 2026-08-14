@@ -79,13 +79,24 @@ function ProjectCard({ project, i }: { project: Project; i: number }) {
             {project.org && <span>{project.org}</span>}
           </div>
           <div className="flex items-center gap-4">
+            {project.demo && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="link-underline font-mono text-xs text-ink-100"
+              >
+                ▶ Live Demo
+              </a>
+            )}
             {project.link && (
               <a
                 href={project.link.href}
                 target="_blank"
                 rel="noreferrer"
                 onClick={(e) => e.stopPropagation()}
-                className="link-underline font-mono text-xs text-ink-200"
+                className="link-underline font-mono text-xs text-ink-300"
               >
                 {project.link.label} ↗
               </a>
@@ -107,7 +118,7 @@ export default function Projects() {
         index="02"
         label="Selected Work"
         title="Projects"
-        description="A spread across the modern ML stack — deep learning on real signals, computer vision, NLP with attention, unsupervised learning, and recommender systems. Chosen for depth over count. Tap any card for details."
+        description="A spread across the modern ML stack — signals & deep learning, LLM safety, multimodal vision-language, medical imaging, semantic retrieval, and real-time anomaly detection. Each is a trained model with a live demo you can try in the browser. Tap a card for details."
       />
       <div className="grid gap-5 md:grid-cols-2">
         {PROJECTS.map((p, i) => (
