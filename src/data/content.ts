@@ -15,7 +15,7 @@ export const PROFILE = {
   email: 'gkang03@student.ubc.ca',
   github: 'https://github.com/JohnKang0720',
   linkedin: 'https://www.linkedin.com/in/gyo-jin-kang-877634211/',
-  resume: import.meta.env.BASE_URL + 'Gyo-Jin-Kang-Resume.pdf',
+  resume: import.meta.env.BASE_URL + 'Gyo-Jin-Kang-Resume.pdf?v=2',
 }
 
 export type SkillGroup = { label: string; items: string[] }
