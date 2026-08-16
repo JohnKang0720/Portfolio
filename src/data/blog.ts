@@ -168,9 +168,9 @@ The model is the easy part. The durable value came from the surrounding system: 
       'U.S. labor law is enormous, fragmented, and always changing. Here is how we built a system where AI agents research the law, a human approves, and verified rules ship to production — automatically.',
     body: `## An impossible rulebook
 
-Minimum wage alone differs across the federal government, all 50 states, and dozens of cities — and the numbers change every year. Add meal breaks, overtime, work permits, and E-Verify, and keeping a compliance rulebook current by hand becomes impossible. Yet if the rulebook is wrong, customers get wrong alerts.
+Minimum wage alone differs across the federal government, all 50 states, and dozens of cities — and the numbers change every year. Add meal breaks, overtime, work permits, and E-Verify, and keeping a compliance rulebook current by hand becomes impossible.
 
-Compliance Monitor is the engine that keeps that rulebook **complete, correct, and current** — with a human holding the final pen.
+The customer-facing product is a **compliance-exception flagger** — a web app that shows each QSR franchise, location by location, exactly which labor-law rules it's currently violating. It's only ever as trustworthy as the rulebook behind it. Compliance Monitor is the engine that keeps that rulebook **complete, correct, and current** — with a human holding the final pen.
 
 ## An assembly line, not a chatbot
 
@@ -179,7 +179,7 @@ The system is deliberately *not* a magic oracle. It's a pipeline with one human 
 - **Research** — Gemini agents (on Vertex AI) read official \`.gov\` sources on a weekly cadence — one compliance pillar per day, scraping years in parallel — and write down what the law says: the wage, the threshold, the deadline, each with a citation and a supporting quote. A Friday freshness pass re-scrapes everything and flags any approved rule that changed.
 - **Review** — a compliance reviewer opens the review app, sees what the AI found next to its cited source, and clicks Approve / Reject / Flag (editing wage rates or dates inline first). Nothing reaches customers without this click.
 - **Publish** — approved rules become the **Golden Seed**, the single source of truth, versioned SCD2 so history is never lost.
-- **Ship** — a change to the Golden Seed opens a PR to the data warehouse (dbt), where the rules turn into the compliance checks customers actually see. That export is the one deliberately manual gate.
+- **Ship** — a change to the Golden Seed opens a PR to the data warehouse, where each rule runs as a **dbt SQL model** against customer data — and every row it returns becomes an exception surfaced in the flagger web app. That export is the one deliberately manual gate.
 
 > The golden rule: the AI *proposes*, a human *approves*, and only approved rules ever reach production.
 
@@ -194,9 +194,9 @@ Two properties keep this from becoming PR chaos:
 
 The pipeline above is powered by three agentic engines, each with the same discipline — *propose as inspectable data, let a human gate, apply separately.*
 
-- **Rule engine** — authors one rule end to end: a grounded research pass, then a tool-calling agent loop that emits a **typed RulePlan (data only)**. It's a run→apply split — the plan is JSON you can gate on confidence before a later step writes it and opens the PRs.
+- **Rule engine** — authors one rule end to end: a grounded research pass, then a tool-calling agent loop that emits a typed RulePlan **and builds the check itself as a dbt SQL model** — the rule literally is SQL running in the dbt warehouse. Run→apply split: the plan is inspectable JSON you can gate on confidence before a later step writes it and opens the PRs.
 - **Recipe engine** — a rule is only useful if it maps to real product data. This one searches the actual codebase (Rails/Go repos) to author a **recipe** (\`recipes/<slug>.yaml\`) describing how each rule is *detected* against Workstream's schema — grounded in code, not guessed.
-- **FP auditor** — the safety net. A read-only pipeline that samples live compliance exceptions, has an LLM judge each, collapses them to **root causes**, and proposes fixes as a dispatch manifest a human acts on. It scales by root cause — research cached per rule, verdicts cohort-batched, one fix per root cause — so triaging 500 false positives is a handful of decisions, not 500.
+- **Audit engine** — the safety net. A read-only pipeline that samples the exceptions the flagger surfaces, has an LLM judge whether each is a real violation or a **false positive**, collapses them to **root causes**, and proposes fixes as a dispatch manifest a human acts on. It scales by root cause — research cached per rule, verdicts cohort-batched, one fix per root cause — so triaging 500 false positives is a handful of decisions, not 500.
 
 ## Why human-in-the-loop is the feature
 
