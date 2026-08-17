@@ -269,7 +269,7 @@ export const EXPERIENCE: Experience[] = [
     points: [
       'Designed and ran A/B tests with power-analysis-driven sample sizing to optimize slot return-to-player; the winning variant lifted digital GGR by 8%.',
       'Developed an Isolation Forest anomaly-detection service to streamline automated fraud review.',
-      'Built player segmentation (Gaussian Mixture Models) and uplift modeling (X-Learner, CATE) to target high-responsiveness players — informing campaigns credited with $1M+ incremental Q4 revenue.',
+      'Built Gaussian Mixture Model (GMM) player segmentation across 5+ behavioral features, surfacing 4 player segments that powered targeted marketing campaigns and generated $1M+ incremental Q4 revenue.',
     ],
     tags: ['A/B Testing', 'Causal Inference', 'Uplift / CATE', 'GMM', 'Isolation Forest'],
   },
